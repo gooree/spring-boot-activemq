@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.jms.annotation.EnableJms;
 
 @SpringBootApplication
 @EnableJms
+@ComponentScan("com.wxjfkg")
 public class BootstrapApplication {
 
 	private static Logger logger = LoggerFactory.getLogger(BootstrapApplication.class);
@@ -24,9 +26,10 @@ public class BootstrapApplication {
 	public Queue queue() {
 		return new ActiveMQQueue(queueName);
 	}
-
+	
 	public static void main(String[] args) throws Exception {
 		logger.debug("start spring-boot-activemq application.");
+//		System.setProperty("org.apache.activemq.SERIALIZABLE_PACKAGES", "com.wxjfkg");
 		SpringApplication.run(BootstrapApplication.class, args);
 	}
 
